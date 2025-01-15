@@ -3,20 +3,18 @@ import axios from "axios";
 
 const Create = () => {
   const [task, setTask] = useState();
-  const inputRef = useRef();
   const handleAdd = () => {
     axios
       .post("http://localhost:3001/add", { task: task })
-      .then((result) => console.log(result).catch((err) => console.log(err)));
-    inputRef.target.value = "";
+      .then((result) => location.reload())
+      .catch((err) => console.log(err));
   };
   return (
-    <div className="flex gap-1">
+    <div className="mb-5 flex gap-1">
       <input
         className="w-64 rounded-s border-2 border-black px-1"
         type="text"
         onChange={(e) => setTask(e.target.value)}
-        ref={inputRef}
       />
       <button
         onClick={handleAdd}
